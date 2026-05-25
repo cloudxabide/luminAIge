@@ -1,17 +1,27 @@
 # luminAI 
 
-I would like to investigate the feasability of creating sovereign AI infrastructure that is RAG-enabled.
+Sovereign AI infrastructure that is RAG-enabled, running entirely on local hardware.
 
-I will be utilizing my NVIDIA DGX Spark and another node (TBD) to host the infra for the RAG components.
+Inference runs on an NVIDIA DGX Spark (Ollama). All orchestration services run on a Linux mini PC (Docker Compose). RAG is sourced primarily from the public internet via self-hosted web search.
 
 Functional Requirements
 
 | Function | Solution |
 |:---------|:---------|
-| webUI | OpenWebUI |
-| RAG | TBD |
-| Inference Model | LLM TBD |
+| Web UI | OpenWebUI |
+| RAG | Qdrant (vector DB) + SearXNG (web search) |
+| Inference Engine | Ollama |
+| Inference Model | Nemotron 3 Super 120B (+ others via Ollama) |
 | Inference Hardware | NVIDIA DGX Spark |
-| Management Node | TBD |
+| Orchestration Node | Linux mini PC (32GB RAM, 1TB NVMe) — Docker Compose |
+| Agent Framework | NemoClaw (on mini PC, inference routed to Ollama on DGX Spark) |
+
+## Build Order
+
+1. **Mini PC** — purchase, install Ubuntu 24.04 LTS, install Docker
+2. **DGX Spark** — install Ollama, pull Nemotron 3 Super 120B, verify API endpoint (`:11434`)
+3. **Mini PC services** — Docker Compose with OpenWebUI + Qdrant + SearXNG, point OpenWebUI at Ollama on DGX Spark
+4. **RAG** — configure OpenWebUI web search (SearXNG) and document pipeline (Qdrant)
+5. **NemoClaw** — optional, add to mini PC (configure to use remote Ollama on DGX Spark at `:11434`)
 
 [luminAI Documentation](https://luminAI.kubernerdes.com) (TBC later)

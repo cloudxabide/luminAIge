@@ -2,7 +2,7 @@
 
 Sovereign AI infrastructure that is RAG-enabled, running entirely on local hardware.
 
-Inference runs on an NVIDIA DGX Spark (Ollama). All orchestration services run on a Linux mini PC (Docker Compose). RAG is sourced primarily from the public internet via self-hosted web search.
+Inference runs on an NVIDIA DGX Spark (Ollama). All orchestration services run on a Dell XPS 15 9520 (Ubuntu 24.04, RTX 3070 Ti Laptop GPU) via Docker Compose. RAG is sourced primarily from the public internet via self-hosted web search.
 
 Functional Requirements
 
@@ -13,7 +13,7 @@ Functional Requirements
 | Inference Engine | Ollama |
 | Inference Model | Nemotron 3 Super 120B (+ others via Ollama) |
 | Inference Hardware | NVIDIA DGX Spark |
-| Orchestration Node | Linux mini PC (32GB RAM, 1TB NVMe) — Docker Compose |
+| Orchestration Node | Dell XPS 15 9520 (Ubuntu 24.04, RTX 3070 Ti Laptop GPU) — Docker Compose |
 | Agent Framework | NemoClaw (on mini PC, inference routed to Ollama on DGX Spark) |
 
 ## Build Order

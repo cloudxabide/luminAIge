@@ -20,10 +20,31 @@ Functional Requirements
 
 ## Build Order
 
-1. **Mini PC** — purchase, install SLES 16, install Docker
-2. **DGX Spark** — install Ollama, pull Nemotron 3 Super 120B, verify API endpoint (`:11434`)
+1. **Mini PC** — purchase, install SLES 16, install Docker (`Scripts/XPS_setup.sh`)
+2. **DGX Spark** — install Ollama, pull Nemotron 3 Super 120B, verify API endpoint (`:11434`) (`Scripts/Spark_setup.sh`)
 3. **Mini PC services** — Docker Compose with OpenWebUI + Qdrant + SearXNG, point OpenWebUI at Ollama on DGX Spark
 4. **RAG** — configure OpenWebUI web search (SearXNG) and document pipeline (Qdrant)
 5. **NemoClaw** — optional, add to mini PC (configure to use remote Ollama on DGX Spark at `:11434`)
+
+## Mini PC Services (Step 3)
+
+Services are defined in `compose/compose.yml`. OpenWebUI runs on port 3000, Qdrant on 6333, SearXNG on 8080.
+
+```bash
+cd compose/
+
+# 1. Create your env file and set values
+cp .env.example .env
+# Edit .env: set DGX_SPARK_IP, XPS_IP, and generate SEARXNG_SECRET_KEY:
+#   openssl rand -hex 32
+
+# 2. Start all services
+docker compose up -d
+
+# 3. Verify
+docker compose ps
+```
+
+OpenWebUI will be available at `http://<XPS_IP>:3000`.
 
 [luminAI Documentation](https://luminAI.kubernerdes.com) (TBC later)

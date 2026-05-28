@@ -1,5 +1,8 @@
 # luminAI 
 
+Well... it turns out that "luminAI" is already taken... by a healthcare company of some sort.  :-(
+I'll be renaming this repo at some point.
+
 Sovereign AI infrastructure that is RAG-enabled, running entirely on local hardware.
 
 Inference runs on an NVIDIA DGX Spark (Ollama). All orchestration services run on a Dell XPS 15 9520 (SLES 16, RTX 3070 Ti Laptop GPU) via Docker Compose. RAG is sourced primarily from the public internet via self-hosted web search.

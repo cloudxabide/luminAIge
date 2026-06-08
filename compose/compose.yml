@@ -39,7 +39,7 @@ services:
     volumes:
       - ./searxng:/etc/searxng:rw
     environment:
-      - SEARXNG_BASE_URL=http://${XPS_IP:-localhost}:8080/
+      - SEARXNG_BASE_URL=http://${HARVESTER_IP:-localhost}:8080/
       - SEARXNG_SECRET_KEY=${SEARXNG_SECRET_KEY}
     cap_drop:
       - ALL

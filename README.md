@@ -6,7 +6,15 @@ Inference runs on an NVIDIA DGX Spark (Ollama). All orchestration services and t
 
 ![Wizarding Is Cool... Now with AI!](Images/Gemini_Generated_NUC_DGX.jpeg)
 
-Functional Requirements
+---
+
+## Two Layers of This Repository
+
+This repository serves two related purposes:
+
+### 1. Technical Build — Sovereign AI Infrastructure
+
+The core build: a sovereign, RAG-enabled AI inference platform running entirely on local edge hardware. No cloud dependency, no data leaving the environment.
 
 | Function | Solution |
 |:---------|:---------|
@@ -18,7 +26,41 @@ Functional Requirements
 | Orchestration Node | 3-node Harvester cluster — RKE2 (Kubernetes) |
 | Agent Framework | NemoClaw (Kubernetes deployment on RKE2 cluster, inference routed to Ollama on DGX Spark) |
 
-## Build Order
+### 2. Engagement Simulation — RGS / GOV Analyst Org
+
+A simulated professional services engagement between **Rancher Government Solutions (RGS)** and a **government analyst organization** customer. The simulation models the full lifecycle of an ISV engagement — from Discovery through POC to Success Criteria Assessment — generating realistic artifacts (agendas, requirements docs, proposals, session notes) and exercising stakeholder dynamics across nine defined personas.
+
+The simulation uses Claude Code slash commands (`.claude/commands/`) as persona skills. Each persona responds from their own domain perspective and enforces the concerns their role would realistically raise.
+
+**Stakeholder Personas:**
+
+| Command | Role | Organization |
+|---|---|---|
+| `/customer-pm` | Product Manager | Customer |
+| `/customer-finance` | Finance Representative | Customer |
+| `/customer-data-scientist` | Data Scientist | Customer |
+| `/customer-sysadmin` | System Administrator | Customer |
+| `/customer-data-analyst` | Data Analyst (end user) | Customer |
+| `/rgs-ae` | Account Executive | RGS |
+| `/rgs-csm` | Customer Success Manager | RGS |
+| `/rgs-sa` | Solutions Architect | RGS |
+| `/rgs-se` | Software Engineer | RGS |
+
+**Engagement artifacts** live in `engagement/`. The `ENGAGEMENT_LOG.md` is the master chronological record of all stakeholder interactions. Each phase subdirectory holds the formal outputs for that phase.
+
+```
+engagement/
+  ENGAGEMENT_LOG.md          ← master narrative journal
+  DOCUMENT_CONVENTION.md     ← attribution and metadata standard
+  discovery/
+  proposal/
+  poc/
+  lessons-learned/
+```
+
+---
+
+## Technical Build Order
 
 1. **Harvester cluster** — provision 3 nodes, install Harvester, create RKE2 guest cluster (`Scripts/Harvester_setup.sh`)
 2. **DGX Spark** — install Ollama, pull Nemotron 3 Super 120B, verify API endpoint (`:11434`) (`Scripts/Spark_setup.sh`)

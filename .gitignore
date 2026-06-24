@@ -1,2 +1,7 @@
 k8s/secret.yaml
 compose/.env
+
+# Override global .claude ignore so persona skills travel with the repo
+!.claude/
+!.claude/commands/
+!.claude/commands/*.md

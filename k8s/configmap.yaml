@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cluster-config
-  namespace: luminaige
-data:
-  DGX_SPARK_IP: "10.10.12.251"
-  HARVESTER_IP: "10.10.12.252"
